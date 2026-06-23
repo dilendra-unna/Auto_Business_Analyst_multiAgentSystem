@@ -1,0 +1,9 @@
+[project]
+name = "ba-copilot-backend"
+version = "0.1.0"
+description = "BA Copilot — Business Analysis automation powered by AI (FastAPI backend)"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = []
+
+# Install dependencies via:  pip install -r requirements.txt
