@@ -1,6 +1,7 @@
 # app/agents/story_agent.py
 
 import json
+from typing import Any
 
 from app.services.openai_service import generate
 
@@ -110,7 +111,7 @@ Given ...
 When ...
 Then ...
 
-Each story should contain 3–8 acceptance criteria where applicable.
+Each story should contain 3-8 acceptance criteria where applicable.
 
 Cover:
 
@@ -185,11 +186,7 @@ Before returning output verify:
 ✓ No extra text outside JSON.
 """
 
-async def run(requirements_json):
 
-    response = await generate(
-        SYSTEM_PROMPT,
-        json.dumps(requirements_json)
-    )
-
+async def run(requirements: dict[str, Any]) -> dict[str, Any]:
+    response = await generate(SYSTEM_PROMPT, json.dumps(requirements))
     return json.loads(response)

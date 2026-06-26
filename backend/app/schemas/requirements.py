@@ -1,5 +1,6 @@
 # app/schemas/requirements.py
 
+from typing import List, Optional
 from pydantic import BaseModel
 
 class Requirement(BaseModel):
@@ -9,4 +10,4 @@ class Requirement(BaseModel):
 
 class Module(BaseModel):
     name: str
-    requirements: list[Requirement]
+    requirements: List[Requirement] = []

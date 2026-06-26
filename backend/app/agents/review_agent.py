@@ -1,6 +1,7 @@
 # app/agents/review_agent.py
 
 import json
+from typing import Any
 
 from app.services.openai_service import generate
 
@@ -145,17 +146,16 @@ Before producing output verify:
 ✓ No extra text outside JSON.
 """
 
-async def run(requirements, stories, tests):
 
+async def run(
+    requirements: dict[str, Any],
+    stories: dict[str, Any],
+    test_cases: dict[str, Any],
+) -> dict[str, Any]:
     payload = {
         "requirements": requirements,
         "stories": stories,
-        "tests": tests
+        "tests": test_cases,
     }
-
-    response = await generate(
-        SYSTEM_PROMPT,
-        json.dumps(payload)
-    )
-
+    response = await generate(SYSTEM_PROMPT, json.dumps(payload))
     return json.loads(response)

@@ -1,6 +1,7 @@
 # app/agents/requirement_agent.py
 
 import json
+from typing import Any
 
 from app.services.openai_service import generate
 
@@ -182,11 +183,7 @@ Before generating output ensure:
 ✓ Requirements are complete and testable.
 """
 
-async def run(document_text: str):
 
-    response = await generate(
-        SYSTEM_PROMPT,
-        document_text
-    )
-
+async def run(document_text: str) -> dict[str, Any]:
+    response = await generate(SYSTEM_PROMPT, document_text)
     return json.loads(response)

@@ -1,6 +1,7 @@
 # app/agents/testcase_agent.py
 
 import json
+from typing import Any
 
 from app.services.openai_service import generate
 
@@ -182,8 +183,8 @@ Each test case must include:
 - type (positive / negative / boundary / integration / security)
 - scenario
 - preconditions (if applicable)
-- test steps (if possible)
-- test data (if applicable)
+- test_steps (if possible)
+- test_data (if applicable)
 - expected_result
 
 ====================================================
@@ -237,11 +238,7 @@ Before returning output verify:
 ✓ No extra text outside JSON
 """
 
-async def run(stories_json):
 
-    response = await generate(
-        SYSTEM_PROMPT,
-        json.dumps(stories_json)
-    )
-
+async def run(stories: dict[str, Any]) -> dict[str, Any]:
+    response = await generate(SYSTEM_PROMPT, json.dumps(stories))
     return json.loads(response)
